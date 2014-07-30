@@ -67,7 +67,7 @@ def main():
     writer = csv.writer(open(result+".csv", "w"))
     for cluster,temp in enumerate(clusters): 
         for point in temp.points:
-            writer.writerow( ['Cluster', cluster ,"\t Point", point])
+            writer.writerow( ['Cluster', cluster ,'Point', point])
             
 if __name__ == "__main__": 
     main()    
