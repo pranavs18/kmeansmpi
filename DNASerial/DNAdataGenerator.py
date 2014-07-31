@@ -23,8 +23,8 @@ def drawOrigin(maxValue):
 
 def main():
     numClusters = int(raw_input("Please enter the number of clusters you want \n "))
-    totalPoints = int(raw_input("Enter the number of points on which  kmeans clustering needs to be performed \n"))
-    maxValue =   int(raw_input("Enter the threshold value for the datapoint \n"))
+    totalPoints = int(raw_input("Enter the number of points per cluster on which  kmeans clustering needs to be performed \n"))
+    maxValue =   int(raw_input("Enter the length of the DNA strand \n"))
     output =  "randomData"
     writer = csv.writer(open(output, "w"))
 
