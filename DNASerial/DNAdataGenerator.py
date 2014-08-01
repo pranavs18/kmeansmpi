@@ -67,7 +67,7 @@ def main():
                 strandList.remove(cls[k])
                 cls[k]=random.choice(strandList)
                 randomString = ''.join(cls)
-            writer.writerow(["Cluster Centroid",i , cluster, "Strand ", randomString])
+            writer.writerow([cluster,randomString])
 
 
 
