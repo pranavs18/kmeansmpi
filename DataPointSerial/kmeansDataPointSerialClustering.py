@@ -22,6 +22,7 @@ def kmeansDataPointSerialClustering(points,num_clusters,threshold):
     '''Get a random sample of points to act as initial centroids'''
     randomsample = random.sample(points,num_clusters)  
     getCluster = [dpc.DataPointCluster([point]) for point in randomsample]
+    print getCluster
     while not converge:
         clusterContainer = [[] for temp in getCluster]
         MaxUpdatePosition = 0.0
@@ -52,7 +53,6 @@ def generate_DataPoints(dimension,lowerRange,upperRange):
 def main():
     
     error = "Inappropriate input"
-    dimension = int(raw_input("Please enter the dimension of the Point type ( 2 for 2D) \n"))
     num_clusters = int(raw_input("Please enter the number of clusters you want \n "))
     totalPoints = int(raw_input("Enter the number of points on which  kmeans clustering needs to be performed \n"))
     lowerBound = float(raw_input("Enter the lower range for the randomly generated data set \n"))
@@ -60,9 +60,9 @@ def main():
     threshold = float(raw_input("Enter the threshold value for the datapoint \n"))
     result = str(raw_input("Enter the name of the file in which you want the output"))
     writerInput = csv.writer(open("input", "w"))
-    
+    dimension = 2
     ''' validation'''
-    if dimension < 0 or totalPoints < 0 or upperBound < lowerBound or threshold < 0 or num_clusters < 0 or totalPoints < num_clusters:
+    if totalPoints < 0 or upperBound < lowerBound or threshold < 0 or num_clusters < 0 or totalPoints < num_clusters:
         print error
         return error
     

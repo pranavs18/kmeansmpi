@@ -7,7 +7,7 @@ Class - PointCluster:Class to represent cluster of points which has the methods 
 class DataPointCluster:
     def __init__(self,points):
         self.points = points
-        self.dimension = points[0].dimension
+        self.dimension = 2
         self.clusterCentroid = self.getCentroidCoordinates()
         
     def __repr__(self):
@@ -15,7 +15,7 @@ class DataPointCluster:
         
     def getCentroidCoordinates(self):
         newCentroid = lambda i:reduce(lambda x,p : x + p.coordinates[i],self.points,0.0)
-        centroidPosition = [newCentroid(i)/len(self.points) for i in xrange(self.dimension)] 
+        centroidPosition = [newCentroid(i)/len(self.points) for i in xrange(2)] 
         return dp.DataPoint(centroidPosition) 
     
     ''' update centroid to a new location for each iteration '''
@@ -27,4 +27,4 @@ class DataPointCluster:
  
  
 def euclideanDistance(x,y):
-    return math.sqrt(reduce(lambda i,j: i + pow((x.coordinates[j]-y.coordinates[j]), 2),xrange(x.dimension),0))   
+    return math.sqrt(reduce(lambda i,j: i + pow((x.coordinates[j]-y.coordinates[j]), 2),xrange(2),0))   
