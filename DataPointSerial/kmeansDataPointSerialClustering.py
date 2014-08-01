@@ -24,6 +24,7 @@ def kmeansDataPointSerialClustering(points,num_clusters,threshold):
     getCluster = [dpc.DataPointCluster([point]) for point in randomsample]
     while not converge:
         clusterContainer = [[] for temp in getCluster]
+        MaxUpdatePosition = 0.0
         for point in points:
             min_distance = dpc.euclideanDistance(point,getCluster[0].clusterCentroid)
             count = 0
@@ -33,7 +34,7 @@ def kmeansDataPointSerialClustering(points,num_clusters,threshold):
                     min_distance = current_distance
                     count = clusterIndex+1
             clusterContainer[count].append(point)
-        MaxUpdatePosition = 0.0
+       
         for clusterIndex in xrange(len(getCluster)):
             update = getCluster[clusterIndex].getUpdatedCentroidCoordinates(clusterContainer[clusterIndex])
             MaxUpdatePosition = max(MaxUpdatePosition, update)
@@ -58,6 +59,7 @@ def main():
     upperBound = float(raw_input("Enter the upper range for the randomly generated data set \n"))
     threshold = float(raw_input("Enter the threshold value for the datapoint \n"))
     result = str(raw_input("Enter the name of the file in which you want the output"))
+    writerInput = csv.writer(open("input", "w"))
     
     ''' validation'''
     if dimension < 0 or totalPoints < 0 or upperBound < lowerBound or threshold < 0 or num_clusters < 0 or totalPoints < num_clusters:
@@ -67,6 +69,7 @@ def main():
     
     ''' generic function to generate d-dimensional data'''
     randomPoints = map( lambda i: generate_DataPoints(dimension, lowerBound, upperBound), xrange(totalPoints) )
+    writerInput.writerow([randomPoints])
     ''' randomPoints = np.array([(random.uniform(lowerBound, upperBound), random.uniform(lowerBound, upperBound)) for i in range(num_clusters)])'''
     clusters = kmeansDataPointSerialClustering(randomPoints, num_clusters, threshold)
     writer = csv.writer(open(result+".csv", "w"))
