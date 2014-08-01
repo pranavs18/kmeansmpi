@@ -2,6 +2,11 @@
 @author - Pranav Saxena / Vaibhav Suresh Kumar
 Serialized version of K means algorithm 
 Distributed Systems , Carnegie Mellon University
+
+References - 
+http://datasciencelab.wordpress.com/2013/12/12/clustering-with-k-means-in-python/
+http://stackoverflow.com/questions/1545606/python-k-means-algorithm
+http://stackoverflow.com/questions/8170562/python-reduce-on-tuple-of-tuples - using Lambda function to calculate euclidean distance for any dimension
 '''
 import DataPointCluster as dpc
 import DataPoint as dp
