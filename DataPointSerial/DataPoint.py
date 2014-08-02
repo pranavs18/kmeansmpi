@@ -7,3 +7,4 @@ class DataPoint:
     ''' to string method in python for human readability'''
     def __repr__(self):
         return str(self.coordinates)
+    

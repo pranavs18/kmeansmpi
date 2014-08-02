@@ -1,10 +1,10 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
-
+import java.util.ListIterator;
+import java.io.FileWriter;
 
 public class DNASerial {
 
@@ -135,7 +135,7 @@ public class DNASerial {
 		LinkedList<LinkedList<String>> computedResult = new LinkedList<LinkedList<String>>();
 
 
-		File file = new File ("/DNASerial/randomData");
+		File file = new File ("./randomData");
 
 		BufferedReader in = new BufferedReader(new FileReader(file));
 
@@ -156,21 +156,22 @@ public class DNASerial {
 
 		intialClusterwithCentroids = dnaSerial.intialClusterwithCentroids(centroidList);
 
-		System.out.println("Inital clusters with only centroids");
-		System.out.println(intialClusterwithCentroids);
-		
-		System.out.println("Entire data set: of length"+entireDataSet.size());
-		System.out.println(entireDataSet);
+                File file1 = new File("DNAserialOutput.txt");
+                FileWriter writer = new FileWriter(file1);
 
-
-		for(int i = 0 ;i<intialClusterwithCentroids.size() * entireDataSet.size();i++){
+		for(int i = 0 ; i<intialClusterwithCentroids.size() * entireDataSet.size(); i++){
 			computedResult = dnaSerial.computeClusterElements(intialClusterwithCentroids, entireDataSet);
-			System.out.println("Clusters after iteration");
-			System.out.println(computedResult);
+			for(LinkedList<String> str: computedResult){
+                            for(String tostr: str){
+                             writer.write(tostr + " " );
+                          }
+                        }
+                  
 			intialClusterwithCentroids = dnaSerial.meanInCluster(computedResult);
-			System.out.println("New means");
-			System.out.println(intialClusterwithCentroids);
 		}
+                System.out.println("Output file created....DNA Serial K means is completed !!"); 
+                writer.flush();
+                writer.close();
 
 	}
 
